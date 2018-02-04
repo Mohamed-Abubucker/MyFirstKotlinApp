@@ -1,5 +1,6 @@
 package com.example.abubucker.myfirstkotlinapp
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -10,13 +11,19 @@ import com.example.abubucker.myfirstkotlinapp.R.id.*
 import com.example.abubucker.myfirstkotlinapp.R.layout.activity_main
 import kotlinx.android.synthetic.main.activity_main.*
 
+
+
 class MainActivity : AppCompatActivity() {
     lateinit var usersDBHelper : UsersDBHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        usersDBHelper = UsersDBHelper(this)
+        val intent = Intent(this,api::class.java);
+        intent.putExtra("username","abubucker");
+        startActivity(intent);
+
+/*        usersDBHelper = UsersDBHelper(this)
         button_add_user.setOnClickListener {
             addUser(activity_main)
         }
@@ -25,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         }
         button_show_all.setOnClickListener{
             showAllUsers(activity_main)
-        }
+        }*/
     }
 
     fun addUser(v:View){
@@ -61,6 +68,8 @@ class MainActivity : AppCompatActivity() {
         }
         textview_result.text = "Fetched " + users.size + " users"
     }
+
+
 }
 
 
